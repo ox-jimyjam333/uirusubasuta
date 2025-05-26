@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>Windowsサポート警告</title>
+<style>
+  /* 背景の青グラデーション＋薄いWindowsロゴ */
+  body, html {
+    margin:0; padding:0; height:100%;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0078d7, #005a9e);
+    position: relative;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    top: 50%; left: 50%;
+    width: 300px; height: 300px;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg') no-repeat center center;
+    background-size: contain;
+    opacity: 0.05;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* オーバーレイ */
+  .modal-overlay {
+    position: fixed; top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.5);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999;
+  }
+
+  /* モーダルボックス */
+  .modal-box {
+    width: 400px;
+    background: white;
+    border: 1px solid #000;
+    box-shadow: 0 0 10px black;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  /* ヘッダー */
+  .modal-header {
+    background: #0078d7;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    display: flex; align-items: center;
+  }
+  .modal-header .icon {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  /* 内容 */
+  .modal-content {
+    padding: 20px;
+    color: black;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  /* ボタンエリア */
+  .modal-buttons {
+    padding: 10px;
+    background: #f1f1f1;
+    text-align: right;
+  }
+  .modal-buttons button {
+    margin-left: 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 2px;
+    border: none;
+  }
+  .btn-ok {
+    background: #0078d7;
+    color: white;
+  }
+  .btn-cancel {
+    background: #e1e1e1;
+    color: black;
+  }
+</style>
+</head>
+<body>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal-box" role="alertdialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-header">
+      <span class="icon">⚠️</span>
+      <span id="modal-title">Windowsサポート警告</span>
+    </div>
+    <div class="modal-content">
+      <p>お使いのPCがウイルスに感染しています。</p>
+      <p>至急サポートセンターに連絡してください！</p>
+      <p>電話番号: <strong>0120-XXX-XXX</strong></p>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-cancel" onclick="closeModal()">キャンセル</button>
+      <button class="btn-ok" onclick="callSupport()">OK</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function closeModal() {
+    alert("キャンセルされました。システムは正常に動作しています。");
+    document.getElementById('modal').style.display = 'none';
+  }
+  function callSupport() {
+    alert("サポートに電話をかけるフリをします。");
+  }
+</script>
+
+</body>
+</html>
+
